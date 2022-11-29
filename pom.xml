@@ -7,7 +7,14 @@
 		<artifactId>oss-parent</artifactId>
 		<version>9</version>
 	</parent>
-
+	<dependencies>
+		<dependency>
+			<groupId>org.biojava</groupId>
+			<artifactId>biojava-core</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+		<!-- other biojava jars as needed -->
+	</dependencies>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.biojava</groupId>
 	<artifactId>biojava</artifactId>
@@ -33,12 +40,12 @@
 	</licenses>
 	<properties>
 		<!-- Notice: if using java 9 or 10 jres, it is possible to simply use here "8", "9" or "10". But if using java 8 jre, "8" is not an allowed value but only "1.8"-->
-		<jdk.version>1.8</jdk.version>
+		<jdk.version>1.7</jdk.version>
 		<maven.enforcer.jdk-version>1.8</maven.enforcer.jdk-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.targetEncoding>UTF-8</project.build.targetEncoding>
 		<!-- needed for failsafe plugin in integrationtest module - JD 2018-03-08 -->
-    	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maxmem>512M</maxmem>
 		<mmtf.version>1.0.11</mmtf.version>
 		<slf4j.version>1.7.30</slf4j.version>
@@ -46,6 +53,8 @@
 		<junit-jupiter.version>5.7.2</junit-jupiter.version>
 		<ciftools.artifact>ciftools-java-jdk8</ciftools.artifact>
 		<ciftools.version>4.0.3</ciftools.version>
+		<maven.compiler.source>7</maven.compiler.source>
+		<maven.compiler.target>7</maven.compiler.target>
 	</properties>
 	<scm>
 		<connection>scm:git:git://github.com/biojava/biojava.git</connection>
