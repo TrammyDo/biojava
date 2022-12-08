@@ -17,17 +17,22 @@ public class ProteinPropertiesDriver {
    */
 
   public static void main(String[] args) throws Exception {
-    translateToProtein translate;
+    ObtainProtein translate;
     Scanner scanner = new Scanner(System.in);
-    String uniProtId;
+    String uniProtId, protein;
+    ProteinTheoProps getProperties;
 
     System.out.println ("Enter a UniProt ID: ");
     uniProtId = scanner.nextLine();
     scanner.close();
 
-    translate = new translateToProtein(uniProtId);
+    translate = new ObtainProtein(uniProtId);
 
-    System.out.println(translate.getProtein());
+    System.out.println(translate.getProtein() + "\n");
+
+    protein = translate.getProtein().toString();
+    getProperties = new ProteinTheoProps(protein);
+    System.out.println("Molecular Weight: " + getProperties.getMolecularWeight() + " Da");
   }
 }
 

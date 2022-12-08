@@ -46,17 +46,21 @@ public class ProteinTheoProps {
   /**
    * Calculates the molecular weight of a protein
    *
-   * @param protein the protein to find the length of
-   *
    * @return the molecular weight of the protein
    */
 
-  public double getMolecularWeight (String protein) {
-    String codon;
-    final int CODON_LENGTH = 3;
-    double molecularWeight;
+  public double getMolecularWeight () {
+    double molecularWeight = 0;
+    AminoAcidSet aminoAcidSet;
+    AminoAcid aminoAcid;
 
+    aminoAcidSet = new AminoAcidSet();
 
+    for (int i = 0; i < mProtein.length(); i++) {
+     aminoAcid = aminoAcidSet.getAminoAcid(mProtein.charAt(i));
+     molecularWeight += aminoAcid.getMolecularWeight();
+    }
 
+    return molecularWeight;
   }
 }
