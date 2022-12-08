@@ -28,11 +28,12 @@ public class ProteinPropertiesDriver {
 
     translate = new ObtainProtein(uniProtId);
 
-    System.out.println(translate.getProtein() + "\n");
+    System.out.println("Sequence:" + translate.getProtein() + "\n");
 
     protein = translate.getProtein().toString();
+    System.out.println ("Length: " + protein.length() + "\n");
     getProperties = new ProteinTheoProps(protein);
-    System.out.println("Molecular Weight: " + getProperties.getMolecularWeight() + " Da");
+    System.out.println("Molecular Weight: " + getProperties.getMolecularWeight() + " Da\n");
   }
 }
 

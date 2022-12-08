@@ -63,4 +63,37 @@ public class ProteinTheoProps {
 
     return molecularWeight;
   }
+
+  public double getIsoelectricPoint () {
+    final char ASP = 'D', GLU = 'E', CYS = 'C', TYR = 'Y', HIS = 'H', LYS = 'K', ARG = 'R';
+    int numASP = 0, numGLU = 0, numCYS = 0, numTYR = 0, numHIS = 0, numLYS = 0, numARG = 0;
+    double isoelectricPoint = 0;
+
+    for (int i = 0; i < mProtein.length(); i++)
+    {
+      if (mProtein.charAt(i) == ASP) {
+        numASP++;
+      }
+      else if (mProtein.charAt(i) == GLU) {
+        numGLU++;
+      }
+      else if (mProtein.charAt(i) == CYS) {
+        numCYS++;
+      }
+      else if (mProtein.charAt(i) == TYR) {
+        numTYR++;
+      }
+      else if (mProtein.charAt(i) == HIS) {
+        numHIS++;
+      }
+      else if (mProtein.charAt(i) == LYS) {
+        numLYS++;
+      }
+      else if (mProtein.charAt(i) == ARG) {
+        numARG++;
+      }
+    }
+
+    return isoelectricPoint;
+  }
 }
