@@ -6,6 +6,7 @@
  */
 
 package src;
+import java.lang.Math;
 
 public class ProteinTheoProps {
   private String mProtein;
@@ -67,7 +68,7 @@ public class ProteinTheoProps {
   public double getIsoelectricPoint () {
     final char ASP = 'D', GLU = 'E', CYS = 'C', TYR = 'Y', HIS = 'H', LYS = 'K', ARG = 'R';
     int numASP = 0, numGLU = 0, numCYS = 0, numTYR = 0, numHIS = 0, numLYS = 0, numARG = 0;
-    double isoelectricPoint = 0;
+    double pH = 0.0, QN1, QN2, QN3, QN4, QN5, QP1, QP2, QP3, QP4, totalCharge = 1.0;
 
     for (int i = 0; i < mProtein.length(); i++)
     {
@@ -94,6 +95,31 @@ public class ProteinTheoProps {
       }
     }
 
-    return isoelectricPoint;
+    while (totalCharge > 0)
+    {
+      QN1 = -1 / (1 + Math.pow (10, (3.65 - pH))); // this calculates the charge of the C-terminal (the end containing the
+      // carboxyl group.
+      QN2 = -(numASP) / (1 + Math.pow (10, (3.9 - pH)));
+      QN3 = -(numGLU) / (1 + Math.pow (10, (4.07 - pH)));
+      QN4 = -(numCYS) / (1 + Math.pow (10, (8.18 - pH)));
+      QN5 = -(numTYR) / (1 + Math.pow (10, (10.46 - pH)));
+      QP1 = numHIS / (1 + Math.pow (10, (pH - 6.04)));
+      QP2 = 1 / (1 + Math.pow (10, (pH - 8.2))); // charge for the N terminus
+      QP3 = numLYS / (1 + Math.pow (10, (pH - 10.54)));
+      QP4 = numARG / (1 + Math.pow (10, (pH - 12.48)));
+
+      totalCharge = QN1 + QN2 + QN3 + QN4 + QN5 + QP1 + QP2 + QP3 + QP4;
+
+      if (pH >= 14) {
+        System.out.println ("Error with pH - higher than 14");
+      }
+
+      if (totalCharge > 0)
+      {
+        pH += 0.01;
+      }
+    }
+
+    return pH;
   }
 }

@@ -8,6 +8,7 @@ Hours:      15
  */
 
 package src;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class ProteinPropertiesDriver {
@@ -21,6 +22,7 @@ public class ProteinPropertiesDriver {
     Scanner scanner = new Scanner(System.in);
     String uniProtId, protein;
     ProteinTheoProps getProperties;
+    DecimalFormat df = new DecimalFormat("##.##");
 
     System.out.println ("Enter a UniProt ID: ");
     uniProtId = scanner.nextLine();
@@ -34,6 +36,7 @@ public class ProteinPropertiesDriver {
     System.out.println ("Length: " + protein.length() + "\n");
     getProperties = new ProteinTheoProps(protein);
     System.out.println("Molecular Weight: " + getProperties.getMolecularWeight() + " Da\n");
+    System.out.println("Isoelectric Point: " + df.format(getProperties.getIsoelectricPoint()) + " pH\n");
   }
 }
 
