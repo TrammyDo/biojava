@@ -10,7 +10,7 @@ import org.biojava.nbio.core.sequence.ProteinSequence;
 import org.biojava.nbio.core.sequence.io.FastaReaderHelper;
 import java.net.URL;
 
-public class ObtainProtein {
+public class UniProtProtein {
   private ProteinSequence mProtein;
 
   /**
@@ -19,7 +19,7 @@ public class ObtainProtein {
    * @param uniProtId the ID of the protein sequence to obtain
    */
 
-  public ObtainProtein(String uniProtId) throws Exception {
+  public UniProtProtein(String uniProtId) throws Exception {
     URL uniprotFasta = new URL (String.format ("https://www.uniprot.org/uniprotkb/%s.fasta", uniProtId));
     ProteinSequence seq = FastaReaderHelper.readFastaProteinSequence(uniprotFasta.openStream()).get(uniProtId);
     mProtein = seq;
