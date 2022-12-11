@@ -7,9 +7,7 @@ Purpose:    Create a program to read in a DNA strand and translate it into a pro
 Hours:      15
  */
 
-package src;
 import org.biojava.nbio.core.sequence.ProteinSequence;
-
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -50,9 +48,9 @@ public class ProteinPropertiesDriver {
     getProperties = new ProteinTheoProps(protein);
     System.out.println("Molecular Weight: " + getProperties.getMolecularWeight() + " Da");
     System.out.println("Isoelectric Point: " + df.format(getProperties.getIsoelectricPoint()) + " pH");
-    System.out.println("Hydrophobicity: " + getProperties.getHydrophobicity());
-//    System.out.println("Extinction coefficient with CYS: " + getProperties.getExtinctionCoefficient1());
-//    System.out.println("Extinction coefficient without CYS: " + getProperties.getExtinctionCoefficient2());
+    System.out.println("Hydrophobicity: " + df.format(getProperties.getHydrophobicity()));
+    System.out.println("Extinction coefficient with CYS: " + df.format(getProperties.getExtinctionCoefficient1()));
+    System.out.println("Extinction coefficient without CYS: " + df.format(getProperties.getExtinctionCoefficient2()));
   }
 }
 

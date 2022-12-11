@@ -5,14 +5,8 @@
  *
  */
 
-package src;
 import java.lang.Math;
-
-import org.biojava.nbio.aaproperties.PeptideProperties;
-import org.biojava.nbio.aaproperties.PeptidePropertiesImpl;
 import org.biojava.nbio.core.sequence.ProteinSequence;
-
-
 
 public class ProteinTheoProps {
   private String mProtein;
@@ -130,11 +124,19 @@ public class ProteinTheoProps {
    * @return hydrophobicity the hydrophobicity of a protein
    */
 
- public double getHydrophobicity (ProteinSequence protein) {
+ public double getHydrophobicity () {
+   double hydrophobicity = 0;
+   AminoAcidSet aminoAcidSet;
+   AminoAcid aminoAcid;
 
-    PeptidePropertiesImpl peptideProperties = new PeptidePropertiesImpl();
+   aminoAcidSet = new AminoAcidSet();
 
-    return peptideProperties.getAvgHydropathy(protein);
+   for (int i = 0; i < mProtein.length(); i++) {
+     aminoAcid = aminoAcidSet.getAminoAcid(mProtein.charAt(i));
+     hydrophobicity += aminoAcid.getHydrophobicity();
+   }
+
+   return hydrophobicity / mProtein.length();
   }
 
   /**
@@ -143,28 +145,46 @@ public class ProteinTheoProps {
    * @return extinctionCoeffiecient the extinction coefficient with cystine
    */
 
-//  public double getExtinctionCoefficient1 () {
-//    boolean ignoreCase = true;
-//    PeptideProperties peptideProperties = new PeptideProperties();
-//
-//    double extinctionCoefficient = PeptideProperties.getExtinctionCoefficient(sequence, ignoreCase);
-//
-//    return extinctionCoefficient;
-//  }
-//
-//  /**
-//   * Calculates the extinction coefficient of a protein excluding cystine
-//   *
-//   * @return extinctionCoeffiecient the extinction coefficient without cystine
-//   */
-//
-//  public double getExtinctionCoefficient2 () {
-//    String sequence = mProtein.toString();
-//    boolean ignoreCase = false;
-//    PeptideProperties peptideProperties = new PeptideProperties();
-//
-//    double extinctionCoefficient = peptideProperties.getExtinctionCoefficient(sequence, ignoreCase);
-//
-//    return extinctionCoefficient;
-//  }
+  public double getExtinctionCoefficient1 () {
+    final double EXT_TYR = 1490, EXT_TRP = 5500, EXT_CYS = 125;
+    int numTYR = 0, numTRP = 0, numCYS = 0;
+    final char TYR = 'Y', TRP = 'W', CYS = 'C';
+
+    for (int i = 0; i < mProtein.length(); i++) {
+      if (mProtein.charAt(i) == TYR) {
+        numTYR++;
+      }
+      else if (mProtein.charAt(i) == TRP) {
+        numTRP++;
+      }
+      else if (mProtein.charAt(i) == CYS) {
+        numCYS++;
+      }
+    }
+
+    return numTYR * EXT_TYR + numTRP * EXT_TRP + numCYS * EXT_CYS;
+  }
+
+  /**
+   * Calculates the extinction coefficient of a protein excluding cystine
+   *
+   * @return extinctionCoeffiecient the extinction coefficient without cystine
+   */
+
+  public double getExtinctionCoefficient2 () {
+    final double EXT_TYR = 1490, EXT_TRP = 5500, EXT_CYS = 125;
+    int numTYR = 0, numTRP = 0;
+    final char TYR = 'Y', TRP = 'W';
+
+    for (int i = 0; i < mProtein.length(); i++) {
+      if (mProtein.charAt(i) == TYR) {
+        numTYR++;
+      }
+      else if (mProtein.charAt(i) == TRP) {
+        numTRP++;
+      }
+    }
+
+    return numTYR * EXT_TYR + numTRP * EXT_TRP;
+  }
 }

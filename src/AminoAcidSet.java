@@ -5,7 +5,6 @@
  *
  */
 
-package src;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -22,6 +21,7 @@ public class AminoAcidSet {
     final int NUM_AMINO_ACIDS = 22;
     char AAAbbrev;
     int molecularWeight;
+    double hydrophobicity;
     String aminoAcidFile = "data/aminoacid.txt";
 
     mAminoAcids = new AminoAcid [NUM_AMINO_ACIDS];
@@ -34,8 +34,9 @@ public class AminoAcidSet {
       while (scanner.hasNext()) {
         AAAbbrev = scanner.next().charAt(0);
         molecularWeight = scanner.nextInt();
+        hydrophobicity = scanner.nextDouble();
 
-        mAminoAcids[mSize] = new AminoAcid (AAAbbrev, molecularWeight);
+        mAminoAcids[mSize] = new AminoAcid (AAAbbrev, molecularWeight, hydrophobicity);
         mSize++;
       }
       scanner.close();
