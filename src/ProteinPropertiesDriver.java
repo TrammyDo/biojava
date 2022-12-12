@@ -8,9 +8,13 @@ Hours:      15
  */
 
 import org.biojava.nbio.core.sequence.ProteinSequence;
+
+import javax.swing.*;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 public class ProteinPropertiesDriver {
 
@@ -25,32 +29,26 @@ public class ProteinPropertiesDriver {
     ProteinTheoProps getProperties;
     DecimalFormat df = new DecimalFormat("##.##");
     ProteinSequence proteinSequence;
+    ImageIcon icon = new ImageIcon("C:\\Users\\John\\IdeaProjects\\biojavaTram\\img\\png-clipart-protein-structure-amino-acid-biology-proteins-s-text-structure-thumbnail.png");
 
-//    String uniProt = JOptionPane.showInputDialog("Enter a UniProt ID");
-
-//    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//    frame.setSize(1000,1000);
-//    JButton button = new JButton("Calculate!");
-//    frame.getContentPane().add(button);
-//    frame.setVisible(true);
-
-    System.out.println("Enter a UniProt ID: ");
-    uniProtId = scanner.nextLine();
-    scanner.close();
+    uniProtId = (String) JOptionPane.showInputDialog(null,"Enter a UniProt ID",
+            "Protein Theoretical Properties", JOptionPane.INFORMATION_MESSAGE, icon, null, "");
+    JButton button = new JButton("Calculate!");
+    button.addActionListener(new ButtonPress());
 
     uniProtProtein = new UniProtProtein(uniProtId);
     proteinSequence = uniProtProtein.getProtein();
-
-    System.out.println("Sequence:" + proteinSequence);
-
     protein = uniProtProtein.getProtein().toString();
-    System.out.println ("Length: " + protein.length());
     getProperties = new ProteinTheoProps(protein);
-    System.out.println("Molecular Weight: " + getProperties.getMolecularWeight() + " Da");
-    System.out.println("Isoelectric Point: " + df.format(getProperties.getIsoelectricPoint()) + " pH");
-    System.out.println("Hydrophobicity: " + df.format(getProperties.getHydrophobicity()));
-    System.out.println("Extinction coefficient with CYS: " + df.format(getProperties.getExtinctionCoefficient1()));
-    System.out.println("Extinction coefficient without CYS: " + df.format(getProperties.getExtinctionCoefficient2()));
+
+    UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
+    JOptionPane.showMessageDialog(null, "Sequence: " + proteinSequence + "\nLength: " +
+                                  protein.length() + "\nMolecular Weight: " + getProperties.getMolecularWeight() +
+                                  " Da" + "\nIsolectric Point: " + df.format(getProperties.getIsoelectricPoint()) +
+                                  " pH" + "\nHydrophobicity: " + df.format(getProperties.getHydrophobicity()) +
+                                  "\nExtinction coefficient 1: " + df.format(getProperties.getExtinctionCoefficient1()) +
+                                  "\nExtinction coefficient 2: " + df.format(getProperties.getExtinctionCoefficient2()),
+                              "Protein Theoretical Properties", JOptionPane.PLAIN_MESSAGE);
   }
 }
 
