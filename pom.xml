@@ -13,7 +13,13 @@
 			<artifactId>biojava-core</artifactId>
 			<version>4.2.0</version>
 		</dependency>
-		<!-- other biojava jars as needed -->
+        <dependency>
+            <groupId>org.biojava</groupId>
+            <artifactId>biojava-structure</artifactId>
+            <version>6.1.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- other biojava jars as needed -->
 	</dependencies>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.biojava</groupId>
