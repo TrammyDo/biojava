@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TreeSet;
 
+import org.biojava.nbio.core.util.FileDownloadUtils;
 import org.biojava.nbio.core.util.InputStreamProvider;
 import org.biojava.nbio.structure.*;
 import org.biojava.nbio.structure.align.client.StructureName;
@@ -40,7 +41,6 @@ import org.biojava.nbio.structure.io.LocalPDBDirectory.FetchBehavior;
 import org.biojava.nbio.structure.io.LocalPDBDirectory.ObsoleteBehavior;
 import org.biojava.nbio.structure.io.MMTFFileReader;
 import org.biojava.nbio.structure.io.PDBFileReader;
-import org.biojava.nbio.core.util.FileDownloadUtils;
 import org.biojava.nbio.structure.io.StructureFiletype;
 import org.biojava.nbio.structure.quaternary.BiologicalAssemblyBuilder;
 import org.biojava.nbio.structure.quaternary.BiologicalAssemblyTransformation;

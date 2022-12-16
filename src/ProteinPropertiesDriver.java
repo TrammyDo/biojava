@@ -8,9 +8,6 @@ Hours:      40
  */
 
 import org.biojava.nbio.core.sequence.ProteinSequence;
-import org.biojava.nbio.structure.Structure;
-import org.biojava.nbio.structure.StructureIO;
-
 import javax.swing.*;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -31,8 +28,8 @@ public class ProteinPropertiesDriver {
     ProteinTheoProps getProperties;
     DecimalFormat df = new DecimalFormat("##.##");
     ProteinSequence proteinSequence;
+    JList list;
     ImageIcon icon = new ImageIcon("C:\\Users\\John\\IdeaProjects\\biojavaTram\\img\\png-clipart-protein-structure-amino-acid-biology-proteins-s-text-structure-thumbnail.png");
-    Structure structure;
 
     uniProtId = (String) JOptionPane.showInputDialog(null, "Enter a UniProt ID",
             "Protein Theoretical Properties", JOptionPane.INFORMATION_MESSAGE, icon, null, "");
@@ -42,20 +39,18 @@ public class ProteinPropertiesDriver {
     proteinSequence = uniProtProtein.getProtein();
     protein = uniProtProtein.getProtein().toString();
     getProperties = new ProteinTheoProps(protein);
-    structure = StructureIO.getStructure(uniProtId);
 
     String output[] = {"Sequence: " + proteinSequence, "\nLength: " + protein.length(),
-                       "\nMolecular Weight: " + getProperties.getMolecularWeight() + " Da",
-                       "\nIsolectric Point: " + df.format(getProperties.getIsoelectricPoint()) + " pH",
-                       "\nHydrophobicity: " + df.format(getProperties.getHydrophobicity()),
-                       "\nExtinction coefficient 1: " + df.format(getProperties.getExtinctionCoefficient1()),
-                       "\nExtinction coefficient 2: " + df.format(getProperties.getExtinctionCoefficient2())};
+            "\nMolecular Weight: " + getProperties.getMolecularWeight() + " Da",
+            "\nIsolectric Point: " + df.format(getProperties.getIsoelectricPoint()) + " pH",
+            "\nHydrophobicity: " + df.format(getProperties.getHydrophobicity()),
+            "\nExtinction coefficient 1: " + df.format(getProperties.getExtinctionCoefficient1()),
+            "\nExtinction coefficient 2: " + df.format(getProperties.getExtinctionCoefficient2())};
 
-    JList list = new JList(output);
+    list = new JList(output);
     JScrollPane scrollPane = new JScrollPane(list);
-    scrollPane.setPreferredSize(new Dimension(500, 500));
+    scrollPane.setPreferredSize(new Dimension(500, 250));
     JOptionPane.showMessageDialog(null, scrollPane, "Protein Theoretical Properties",
                                   JOptionPane.PLAIN_MESSAGE);
   }
 }
-

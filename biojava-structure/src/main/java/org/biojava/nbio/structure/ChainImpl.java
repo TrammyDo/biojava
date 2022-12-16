@@ -369,7 +369,7 @@ public class ChainImpl implements Chain {
 	}
 
 	@Override
-	public Sequence<?> getBJSequence()  {
+	public Sequence getBJSequence()  {
 
 		String seq = getSeqResSequence();
 

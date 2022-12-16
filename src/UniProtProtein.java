@@ -24,6 +24,12 @@ public class UniProtProtein {
     mProtein = seq;
   }
 
+  /**
+   * Returns the protein sequence from the given UniProtID
+   *
+   * @return mProtein the protein sequence
+   */
+
   public ProteinSequence getProtein() {
     return mProtein;
   }

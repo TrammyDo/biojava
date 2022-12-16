@@ -34,7 +34,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-
 import org.biojava.nbio.core.util.FileDownloadUtils;
 import org.biojava.nbio.core.util.InputStreamProvider;
 import org.biojava.nbio.structure.PdbId;

@@ -659,7 +659,8 @@ public abstract class AbstractUserArgumentProcessor implements UserArgumentProce
 			Iterator<String> helpIt = paramHelp.iterator();
 
 			buf.append("--- ").append(alg.getAlgorithmName()).append(" parameters: ---").append(newline);
-			Stream.iterate(0, n -> n + 1).limit(size)
+			Stream.iterate(0, n
+							-> n + 1).limit(size)
 														.map(i -> namesIt.next())
 														.forEach(name -> buf.append("   -").append(Introspector.decapitalize(name)).append(" ").append(helpIt.next()).append(newline));
 		}

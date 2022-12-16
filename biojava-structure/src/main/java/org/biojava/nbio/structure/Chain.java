@@ -237,7 +237,7 @@ public interface Chain extends Serializable {
 	 *
 	 * @return the SEQRES groups of the Chain as a Sequence object.
 	 */
-	Sequence<?> getBJSequence()  ;
+	Sequence getBJSequence()  ;
 
 	/**
 	 * Returns the sequence of amino acids as it has been provided in the ATOM records.
